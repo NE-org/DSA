@@ -306,6 +306,25 @@ public:
     }
 };
 
+// Method to validate the id input
+void validateInput(int &input)
+{
+    while (true)
+    {
+        if (cin.fail())
+        {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cin.ignore();
+            cin >> input;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
 int main()
 {
     PatientsLL patientsLL;
@@ -344,6 +363,7 @@ int main()
             cout << "----------------------------" << endl;
             cout << "ID: ";
             cin >> patientId;
+            validateInput(patientId);
             cout << "NAME: ";
             cin.ignore();
             getline(cin, name);
@@ -363,6 +383,7 @@ int main()
             cout << "----------------------------" << endl;
             cout << "ID: ";
             cin >> doctorId;
+            validateInput(doctorId);
             cout << "NAME: ";
             cin.ignore();
             getline(cin, name);
@@ -380,10 +401,13 @@ int main()
             cout << "----------------------------" << endl;
             cout << "ID: ";
             cin >> appointmentId;
+            validateInput(appointmentId);
             cout << "P_ID(Patiend ID): ";
             cin >> patientId;
+            validateInput(patientId);
             cout << "D_ID(Doctor ID): ";
             cin >> doctorId;
+            validateInput(doctorId);
             cin.ignore();
             cout << "DATE (DD/MM/YYYY): ";
             getline(cin, date);
