@@ -327,6 +327,13 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
+        if (cin.fail()) {
+            cout << "Invalid choice. Please enter a number between 1 and 7." << endl;
+            cin.clear();
+            cin.ignore();
+            continue;
+        }
+
         switch (choice) {
         case 1:
         {
