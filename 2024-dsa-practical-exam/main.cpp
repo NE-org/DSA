@@ -325,6 +325,25 @@ void validateInput(int &input)
     }
 }
 
+// Method to validate the empty string input
+void validateEmptyString(string &input)
+{
+    while (true)
+    {
+        if (input.empty())
+        {
+            cout << "Invalid input. Please enter a valid string input." << endl;
+            cin.clear();
+            cin.ignore();
+            getline(cin, input);
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+
 int main()
 {
     PatientsLL patientsLL;
@@ -367,10 +386,13 @@ int main()
             cout << "NAME: ";
             cin.ignore();
             getline(cin, name);
+            validateEmptyString(name);
             cout << "DoB (DD/MM/YYYY): ";
             getline(cin, dob);
+            validateEmptyString(dob);
             cout << "GENDER: ";
             getline(cin, gender);
+            validateEmptyString(gender);
             patientsLL.addPatient(patientId, name, dob, gender);
             break;
         }
@@ -387,8 +409,10 @@ int main()
             cout << "NAME: ";
             cin.ignore();
             getline(cin, name);
+            validateEmptyString(name);
             cout << "SPECIALIZATION: ";
             getline(cin, specialization);
+            validateEmptyString(specialization);
             doctorsLL.addDoctor(doctorId, name, specialization);
             break;
         }
@@ -411,6 +435,7 @@ int main()
             cin.ignore();
             cout << "DATE (DD/MM/YYYY): ";
             getline(cin, date);
+            validateEmptyString(date);
             appointmentsLL.registerAppointment(appointmentId, patientId, doctorId, date);
             break;
         }
