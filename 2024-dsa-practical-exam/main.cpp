@@ -101,6 +101,7 @@ public:
             }
             temp->next = newNode;
         }
+        cout << "! ------------------ Patient with ID " << patientId << " has been added successfully. ----------------------- !" << endl;
     }
 
     /*
@@ -174,6 +175,7 @@ public:
             }
             temp->next = newNode;
         }
+        cout << "! ------------------ Doctor with ID " << doctorId << " has been added successfully. ----------------------- !" << endl;
     }
 
     void displayActiveDoctors()
@@ -280,6 +282,7 @@ public:
                 }
                 temp->next = newNode;
             }
+            cout << "! ------------------ Appointment with ID " << appointmentId << " has been registered successfully. ----------------------- !" << endl;
         }
     }
 
