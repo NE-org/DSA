@@ -1,11 +1,10 @@
-// Creator:  Manzi Cedrick
-
 /*
     Create a simple Hospital Management System using Linked Lists. Focus on using the defined linkedList.
 */
 
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 /* 
