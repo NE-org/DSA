@@ -538,12 +538,9 @@ int main()
             getline(cin, date);
             while (!isValidDate(date))
             {
+                cout << "Invalid date format or date is in the past. Please enter a valid date (DD/MM/YYYY)." << endl;
                 cout << "DATE (DD/MM/YYYY): ";
                 getline(cin, date);
-                if (!isValidDate(date))
-                {
-                    cout << "Invalid date format or date is in the past. Please enter a valid date (DD/MM/YYYY)." << endl;
-                }
             }
             appointmentsLL.registerAppointment(appointmentId, patientId, doctorId, date);
             break;
