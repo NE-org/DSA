@@ -4,10 +4,12 @@
 
 #include <iostream>
 #include <string>
+#include <regex>
+#include <ctime>
 
 using namespace std;
 
-/* 
+/*
     Patient class with patientId INT, name STRING, dob STRING, gender STRING
 */
 class Patient
@@ -21,7 +23,7 @@ public:
     Patient(int patientId, string name, string dob, string gender) : patientId(patientId), name(name), dob(dob), gender(gender) {}
 };
 
-/* 
+/*
     Doctor class with doctorId INT, name STRING, specialization STRING
 */
 class Doctor
@@ -34,7 +36,7 @@ public:
     Doctor(int doctorId, string name, string specialization) : doctorId(doctorId), name(name), specialization(specialization) {}
 };
 
-/* 
+/*
     Appointment class with appointmentId INT, patientId INT, doctorId INT, date STRING
 */
 
@@ -49,7 +51,7 @@ public:
     Appointment(int appointmentId, int patientId, int doctorId, string date) : appointmentId(appointmentId), patientId(patientId), doctorId(doctorId), appointmentDate(date) {}
 };
 
-/* 
+/*
     PatientsLL class with Node struct inside it
     Node struct has Patient object and next pointer
     PatientsLL has head pointer
@@ -90,12 +92,16 @@ public:
         Node *newNode = new Node(patient);
 
         // Check if the linkedlist is empty, then adds the head as the first node
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             head = newNode;
-        } else {
+        }
+        else
+        {
             // If the linkedlist is not empty, then add the new node to the end of the patient list as the last node
             Node *temp = head;
-            while (temp->next != nullptr) {
+            while (temp->next != nullptr)
+            {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -124,7 +130,7 @@ public:
     }
 };
 
-/* 
+/*
     DoctorsLL class with Node struct inside it
     Node struct has Doctor object and next pointer
     DoctorsLL has head pointer
@@ -163,13 +169,16 @@ public:
         Node *newNode = new Node(doctor);
 
         // Check if the linkedlist is empty, then adds the head as the first node
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             head = newNode;
         }
-        else {
+        else
+        {
             // If the linkedlist is not empty, then add the new node to the end of the doctor list as the last node
             Node *temp = head;
-            while (temp->next != nullptr) {
+            while (temp->next != nullptr)
+            {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -180,14 +189,16 @@ public:
     void displayActiveDoctors()
     {
         // Check if the linkedlist is empty
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             cout << "! --------------- No Doctors available. Please add a doctor first. Use (2) ------------------ !" << endl;
             return;
         }
 
         Node *temp = head;
         cout << " * ---------------- * ------------------ * ----------------- *" << endl;
-        while (temp != nullptr) {
+        while (temp != nullptr)
+        {
             cout << "    Doctor ID: " << temp->doctor.doctorId << "  , " << " Name: " << temp->doctor.name << "  ,  " << " Specialization: " << temp->doctor.specialization << endl;
             temp = temp->next;
         }
@@ -195,7 +206,7 @@ public:
     }
 };
 
-/* 
+/*
     AppointmentsLL class with Node struct inside it
     Node struct has Appointment object and next pointer
     AppointmentsLL has head pointer
@@ -214,7 +225,7 @@ public:
     Node *head;
     PatientsLL &patientsLL;
     DoctorsLL &doctorsLL;
-    
+
     // Constructor to initialize the head pointer, PatientsLL and DoctorsLL objects as references
     AppointmentsLL(PatientsLL &patientsLL, DoctorsLL &doctorsLL) : head(nullptr), patientsLL(patientsLL), doctorsLL(doctorsLL) {}
 
@@ -223,8 +234,10 @@ public:
     {
         PatientsLL::Node *tempPatient = patientsLL.head;
         // Loop through the patients linked list to check if the patient with the given ID exists, if it exists return true
-        while (tempPatient != nullptr) {
-            if (tempPatient->patient.patientId == patientId) {
+        while (tempPatient != nullptr)
+        {
+            if (tempPatient->patient.patientId == patientId)
+            {
                 return true;
             }
             tempPatient = tempPatient->next;
@@ -237,8 +250,10 @@ public:
     {
         DoctorsLL::Node *tempDoctor = doctorsLL.head;
         // Loop through the doctors linked list to check if the doctor with the given ID exists, if it exists return true
-        while (tempDoctor != nullptr) {
-            if (tempDoctor->doctor.doctorId == doctorId) {
+        while (tempDoctor != nullptr)
+        {
+            if (tempDoctor->doctor.doctorId == doctorId)
+            {
                 return true;
             }
             tempDoctor = tempDoctor->next;
@@ -250,16 +265,22 @@ public:
     void registerAppointment(int appointmentId, int patientId, int doctorId, string date)
     {
 
-        if (!isPatientExists(patientId)) {
+        if (!isPatientExists(patientId))
+        {
             cout << "! ------------------ Patient with ID " << patientId << " does not exist. ----------------------- !" << endl;
-        } else if (!isDoctorExists(doctorId)) {
+        }
+        else if (!isDoctorExists(doctorId))
+        {
             cout << "! ------------------ Doctor with ID " << doctorId << " does not exist. ------------------------- !" << endl;
         }
-        else {
+        else
+        {
             Node *temp = head;
             // Loop through the appointments linked list to check if the appointment with the given ID exists
-            while (temp != nullptr) {
-                if (temp->appointment.appointmentId == appointmentId) {
+            while (temp != nullptr)
+            {
+                if (temp->appointment.appointmentId == appointmentId)
+                {
                     cout << "! ------------------ Appointment with ID " << appointmentId << " already exists. ----------------------- !" << endl;
                     return;
                 }
@@ -268,15 +289,18 @@ public:
 
             Appointment appointment(appointmentId, patientId, doctorId, date);
             Node *newNode = new Node(appointment);
-            
+
             // Check if the linkedlist is empty, then adds the head as the first node
-            if (head == nullptr) {
+            if (head == nullptr)
+            {
                 head = newNode;
             }
-            else {
+            else
+            {
                 Node *temp = head;
                 // If the linkedlist is not empty, then add the new node to the end of the appointment list as the last node
-                while (temp->next != nullptr) {
+                while (temp->next != nullptr)
+                {
                     temp = temp->next;
                 }
                 temp->next = newNode;
@@ -289,7 +313,8 @@ public:
     void displayAppointments()
     {
         // Check if the linkedlist is empty
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             cout << "! --------------- No Appointments available. Please register an appointment first. Use (3) ------------------ !" << endl;
             return;
         }
@@ -344,6 +369,68 @@ void validateEmptyString(string &input)
     }
 }
 
+bool isValidDateFormat(const string &date)
+{
+    // Regular expression to match the date format DD/MM/YYYY
+    regex datePattern(R"(^\d{2}/\d{2}/\d{4}$)");
+    return regex_match(date, datePattern);
+}
+
+bool isPastDate(const string &date)
+{
+    // Extract day, month, year from the input date
+    int day = stoi(date.substr(0, 2));
+    int month = stoi(date.substr(3, 2));
+    int year = stoi(date.substr(6, 4));
+
+    // Get current date
+    time_t t = time(0);
+    tm *now = localtime(&t);
+
+    int currentYear = now->tm_year + 1900;
+    int currentMonth = now->tm_mon + 1;
+    int currentDay = now->tm_mday;
+
+    // Check if the date is in the past
+    if (year < currentYear)
+        return true;
+    if (year == currentYear && month < currentMonth)
+        return true;
+    if (year == currentYear && month == currentMonth && day < currentDay)
+        return true;
+
+    return false;
+}
+
+bool isValidDate(const string &date)
+{
+    if (!isValidDateFormat(date))
+        return false;
+
+    // Extract day, month, year from the input date
+    int day = stoi(date.substr(0, 2));
+    int month = stoi(date.substr(3, 2));
+    int year = stoi(date.substr(6, 4));
+
+    // Check if the date is valid
+    if (month < 1 || month > 12)
+        return false;
+
+    // Days in each month
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    // Check for leap year
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+    {
+        daysInMonth[1] = 29;
+    }
+
+    if (day < 1 || day > daysInMonth[month - 1])
+        return false;
+
+    return !isPastDate(date);
+}
+
 int main()
 {
     PatientsLL patientsLL;
@@ -365,14 +452,16 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
-        if (cin.fail()) {
+        if (cin.fail())
+        {
             cout << "Invalid choice. Please enter a number between 1 and 7." << endl;
             cin.clear();
             cin.ignore();
             continue;
         }
 
-        switch (choice) {
+        switch (choice)
+        {
         case 1:
         {
             int patientId;
@@ -429,13 +518,33 @@ int main()
             cout << "P_ID(Patiend ID): ";
             cin >> patientId;
             validateInput(patientId);
+            while (!appointmentsLL.isPatientExists(patientId))
+            {
+                cout << "Patient with ID " << patientId << " does not exist. Please enter a valid Patient ID." << endl;
+                cout << "P_ID(Patiend ID): ";
+                cin >> patientId;
+            }
             cout << "D_ID(Doctor ID): ";
             cin >> doctorId;
             validateInput(doctorId);
+            while (!appointmentsLL.isDoctorExists(doctorId))
+            {
+                cout << "Doctor with ID " << doctorId << " does not exist. Please enter a valid Doctor ID." << endl;
+                cout << "D_ID(Doctor ID): ";
+                cin >> doctorId;
+            }
             cin.ignore();
             cout << "DATE (DD/MM/YYYY): ";
             getline(cin, date);
-            validateEmptyString(date);
+            while (!isValidDate(date))
+            {
+                cout << "DATE (DD/MM/YYYY): ";
+                getline(cin, date);
+                if (!isValidDate(date))
+                {
+                    cout << "Invalid date format or date is in the past. Please enter a valid date (DD/MM/YYYY)." << endl;
+                }
+            }
             appointmentsLL.registerAppointment(appointmentId, patientId, doctorId, date);
             break;
         }
